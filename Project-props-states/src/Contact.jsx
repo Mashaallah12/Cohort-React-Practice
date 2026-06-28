@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Contact = () => {
+    let [count, setCount] = useState(0)
+     
   return (
     <div>
-      <h1>hello every one i am Contact</h1>
+     <span>counter - {count}</span>
+     <button onClick={()=>{
+        setCount(count+1)
+     }}>increment</button>
     </div>
   )
 }
