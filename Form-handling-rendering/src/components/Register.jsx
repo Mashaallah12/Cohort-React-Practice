@@ -1,18 +1,36 @@
 import React, { useState } from "react";
 
-const Register = ({ setToggle }) => {
-  let [formData, setFormData] = useState({});
+const Register = ({ setToggle, setUsers }) => {
+  let [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  
+
+ 
+
+
+
 
   let handleChange = (e) => {
     let { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+
+
   let handleSubmit = (e) => {
     e.preventDefault();
-   console.log(formData);
-   
-    
-  }
+    setUsers((prev)=> [...prev, formData]);
+    setFormData({
+      email:"",
+      password:"",
+    })
+    alert("register successful")
+  };
+
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-sm bg-white p-8 rounded-lg shadow-md">
@@ -23,7 +41,9 @@ const Register = ({ setToggle }) => {
           <div>
             <label className="block mb-1 text-sm font-medium">Email</label>
             <input
-                name="email"
+              required
+              value={formData.email}
+              name="email"
               onChange={handleChange}
               type="email"
               placeholder="Enter your email"
@@ -35,7 +55,9 @@ const Register = ({ setToggle }) => {
           <div>
             <label className="block mb-1 text-sm font-medium">Password</label>
             <input
-            name="password"
+              required
+              value={formData.password}
+              name="password"
               onChange={handleChange}
               type="password"
               placeholder="Enter your password"
